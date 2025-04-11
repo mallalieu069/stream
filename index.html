@@ -46,9 +46,13 @@
     }
 
     // Get the 'play' parameter from the URL
-    var fileUrl = getParameterByName('play');
-    var kid = getParameterByName('kid');
-    var key = getParameterByName('key');
+    // var fileUrl = getParameterByName('play');
+    // var kid = getParameterByName('kid');
+    // var key = getParameterByName('key');
+
+     var fileUrl ="https://d1t3ymn2bmrchb.cloudfront.net/out/v1/f63a40a3c69a466c8ced8a842b231d37/index.mpd";
+    var kid ="6d8e259916c8446c85527e6a7fac7d69";
+    var key ="78dd94fc20f2ecf14a90ceceb6ef8aff";
 
     // Determine stream type
     var isMpd = fileUrl.endsWith('.mpd');
@@ -65,11 +69,11 @@
 
     if (isMpd) {
       // Set up DRM for DASH with keys
-      playerSetup.type = 'https://d1t3ymn2bmrchb.cloudfront.net/out/v1/f63a40a3c69a466c8ced8a842b231d37/index.mpd';
+      playerSetup.type = 'hls';
       playerSetup.drm = {
         clearkey: {
-          keyId: '6d8e259916c8446c85527e6a7fac7d69',
-          key: '78dd94fc20f2ecf14a90ceceb6ef8aff'
+          keyId: kid,
+          key: key
    
         }
       };

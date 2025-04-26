@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Player</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #jwplayerDiv {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="jwplayerDiv"></div>
+
+  <script>
+    const originalUrl = "https://liveauth.fancode.com/primary/118528_english_hls_83568adfreeta-di_h264/1080p.m3u8?hdntl=Expires=1745672461~_GO=Generated~acl=*~Signature=ATMAyWGE4yciuNKfazjfqO3hpnhStcTz6TdM5_O52EMcAEUoUlBmMwMMcM5xUPadlwd_ZbvRCWGndAZy1St7IrhuNlkH";
+    const proxiedUrl = "proxy.php?url=" + encodeURIComponent(originalUrl);
+
+    jwplayer("jwplayerDiv").setup({
+      file: proxiedUrl,
+      autostart: true,
+      width: "100%",
+      aspectratio: "16:9",
+      type: "hls"
+    });
+  </script>
+</body>
+</html>

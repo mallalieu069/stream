@@ -1,109 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Video Player</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OTT Style Home</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #333;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #141414;
+      color: white;
     }
 
-    .jwplayer {
-      position: absolute !important
+    h1 {
+      text-align: center;
+      margin: 20px 0;
     }
 
-    .jwplayer.jw-flag-aspect-mode {
-      min-height: 100%;
-      max-height: 100%
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .card {
+      background-color: #222;
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .card-title {
+      padding: 10px;
+      font-size: 16px;
+      text-align: center;
     }
   </style>
 </head>
-
 <body>
-  <div id="jwplayerDiv"></div>
 
-  <script type="text/javascript">
-    // Function to get URL parameters
-    function getParameterByName(name, url) {
-      if (!url) url = window.location.href;
-      name = name.replace(/[\[\]]/g, "\\$&");
-      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-      if (!results) return null;
-      if (!results[2]) return '';
-      return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
+  <h1>Welcome to Yatsu's world</h1>
 
-    // Get the 'play' parameter from the URL
-    // var fileUrl = getParameterByName('play');
-    // var kid = getParameterByName('kid');
-    // var key = getParameterByName('key');
+  <div class="card-container">
+    <a href="p1.html" class="card">
+      <img src="https://mncvision.tv/userfiles/image/channel/beIN-1.jpg" alt="Bein Sports 1">
+      <div class="card-title">Bein Sports 1</div>
+    </a>
+    <a href="p2.html" class="card">
+      <img src="https://images.fancode.com/skillup-uploads/cms-media/GRAN-PREMIO-ESTRELLA-GALICIA-0,0-DE-ESPANA--old-match-card..png?hash=eyJrZXkiOiJza2lsbHVwLXVwbG9hZHMvY21zLW1lZGlhL0dSQU4tUFJFTUlPLUVTVFJFTExBLUdBTElDSUEtMCwwLURFLUVTUEFOQS0tb2xkLW1hdGNoLWNhcmQuLnBuZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsInBvc2l0aW9uIjoidG9wIiwid2lkdGgiOjI5MCwiaGVpZ2h0IjoxMjB9LCJ3ZWJwIjp7InF1YWxpdHkiOjYwLCJsb3NzbGVzcyI6ZmFsc2V9fSwib3V0cHV0Rm9ybWF0Ijoid2VicCJ9" alt="MOTO GP">
+      <div class="card-title">MOTO GP   </div>
+    </a>
+    <!-- Add more cards below -->
+    <!--
+    <a href="yourpage.html" class="card">
+      <img src="yourimage.jpg" alt="Your Title">
+      <div class="card-title">Your Title</div>
+    </a>
+    -->
+  </div>
 
-     var fileUrl ="https://d2jq3g5y5mfmq1.cloudfront.net/out/v1/7d3580a8211141bfac8d123e484441bc/index.mpd";
-    var kid ="d2e2980188584dcb935a5f39e8660dc5";
-    var key ="0fd5e059fa4d19f891b19c2acfaecfdb";
-
-    // Determine stream type
-    var isMpd = fileUrl.endsWith('.mpd');
-    var isM3U8 = fileUrl.endsWith('.m3u8');
-
-    // Set up JWPlayer
-    var playerSetup = {
-      file: fileUrl,
-      position: 'bottom',
-      autostart: true,
-      stretching: "",
-      width: "100%"
-    };
-
-    if (isMpd) {
-      // Set up DRM for DASH with keys
-      playerSetup.type = 'dash';
-      playerSetup.drm = {
-        clearkey: {
-          keyId: kid,
-          key: key
-   
-        }
-      };
-    } else if (isM3U8) {
-      // Set up DRM for HLS with keys
-      playerSetup.type = 'hls';
-      if (kid && key) {
-        playerSetup.drm = {
-          clearkey: {
-            keyId: kid,
-            key: key
-          }
-        };
-      }
-    } else {
-      // Default to HLS without keys
-      playerSetup.type = 'hls';
-    }
-
-    jwplayer("jwplayerDiv").setup(playerSetup);
-     // Display a pop-up message when the page starts
-  window.addEventListener("load", function() {
-            if (result) {
-              
-            }
-         
-  
-            
-          });
-  </script>
 </body>
-
 </html>

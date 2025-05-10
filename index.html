@@ -1,77 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>OTT Style Home</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #141414;
-      color: white;
-    }
-
-    h1 {
-      text-align: center;
-      margin: 20px 0;
-    }
-
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 20px;
-      padding: 40px;
-    }
-
-    .card {
-      background-color: #222;
-      border-radius: 12px;
-      overflow: hidden;
-      text-decoration: none;
-      color: white;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
-    }
-
-    .card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
-
-    .card-title {
-      padding: 10px;
-      font-size: 16px;
-      text-align: center;
-    }
-  </style>
+  <link href="https://vjs.zencdn.net/7.15.0/video-js.css" rel="stylesheet" />
 </head>
 <body>
+  <video
+    id="my-video"
+    class="video-js vjs-default-skin"
+    controls
+    preload="auto"
+    width="640"
+    height="360"
+  ></video>
 
-  <h1>Welcome to Yatsu's world</h1>
-
-  <div class="card-container">
-    <a href="p1.html" class="card">
-      <img src="https://mncvision.tv/userfiles/image/channel/beIN-1.jpg" alt="Bein Sports 1">
-      <div class="card-title">Bein Sports 1</div>
-    </a>
-    <a href="p2.html" class="card">
-      <img src="https://images.fancode.com/skillup-uploads/cms-media/GRAN-PREMIO-ESTRELLA-GALICIA-0,0-DE-ESPANA--old-match-card..png?hash=eyJrZXkiOiJza2lsbHVwLXVwbG9hZHMvY21zLW1lZGlhL0dSQU4tUFJFTUlPLUVTVFJFTExBLUdBTElDSUEtMCwwLURFLUVTUEFOQS0tb2xkLW1hdGNoLWNhcmQuLnBuZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsInBvc2l0aW9uIjoidG9wIiwid2lkdGgiOjI5MCwiaGVpZ2h0IjoxMjB9LCJ3ZWJwIjp7InF1YWxpdHkiOjYwLCJsb3NzbGVzcyI6ZmFsc2V9fSwib3V0cHV0Rm9ybWF0Ijoid2VicCJ9" alt="MOTO GP">
-      <div class="card-title">MOTO GP   </div>
-    </a>
-    <!-- Add more cards below -->
-    <!--
-    <a href="yourpage.html" class="card">
-      <img src="yourimage.jpg" alt="Your Title">
-      <div class="card-title">Your Title</div>
-    </a>
-    -->
-  </div>
-
+  <script src="https://vjs.zencdn.net/7.15.0/video.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    var video = document.getElementById('my-video');
+    if (Hls.isSupported()) {
+      var hls = new Hls();
+      hls.loadSource('https://dai.google.com/ssai/event/8cov9tHQRj26xm-Qz6uWzQ/master.m3u8');
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        video.play();
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = 'https://example.com/stream/playlist.m3u8';
+      video.addEventListener('loadedmetadata', function () {
+        video.play();
+      });
+    }
+    var player = videojs(video);
+  </script>
 </body>
 </html>
